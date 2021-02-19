@@ -38,14 +38,6 @@ function sendData(request, response) {
   response.send(projectData);
 };
 
-/* -----------------------------------------------------------------------------
-- The POST route should anticipate receiving three pieces of data from the request body
-    -- temperature
-    -- date
-    -- user response 
-- Make sure your POST route is setup to add each of these values with a key to projectData
------------------------------------------------------------------------------*/
-
 // POST route
 app.post('/add', callBack);
 
@@ -53,7 +45,3 @@ function callBack(req, res) {
   res.send('POST received');
 }
 
-/* -----------------------------------------------------------------------------
-Num 3 ,4
-https://classroom.udacity.com/nanodegrees/nd001-mena-nfp2/parts/5c546e88-361e-4c4d-8fbd-1ad6dee27810/modules/42f360ec-ea7d-4619-8780-882642a3edd3/lessons/1eceea63-19e5-4599-b40a-b872653de4a6/concepts/58e551fe-9a86-4f82-89bc-ab737f5a399e
------------------------------------------------------------------------------*/
