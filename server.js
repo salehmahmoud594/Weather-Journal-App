@@ -30,18 +30,45 @@ function listening() {
   console.log(`Running on localhost: ${port}`);
 };
 
-
+// -----------------
+const fakeData = {
+  dateOut: '',
+  tempOut: '',
+  contentOut: ''
+}
+// -----------------
+app.get('/fakeWeatherData', getFakeData)
+function getFakeData(req, res) {
+  res.send(fakeData)
+}
+// -----------------
+const weatherData = []
 // GET route
-app.get('/all', sendData);
-
-function sendData(request, response) {
-  response.send(projectData);
+app.get('/all', getData);
+function getData(req, res) {
+  res.send(weatherData);
+  console.log(weatherData)
 };
 
 // POST route
-app.post('/add', callBack);
-
-function callBack(req, res) {
-  res.send('POST received');
+app.post('/addWeather', addWeather);
+function addWeather(req, res) {
+  console.log(req.body)
+  newEntry = {
+    dataOut: req.body.dataOut,
+    tempOut: req.body.tempOut,
+    contentOut: req.body.contentOut
+  }
+  weatherData.push(newEntry)
+  res.send(weatherData);
+  console.log(weatherData)
 }
+
+// POST an Weather
+// const data = [];
+// app.post('/Weather', addWeather);
+// function addWeather(req, res) {
+//   data.push(req.body);
+// };
+
 

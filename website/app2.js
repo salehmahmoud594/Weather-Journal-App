@@ -5,6 +5,7 @@ let dataOut = document.getElementById('date');
 let tempOut = document.getElementById('temp');
 let contentOut = document.getElementById('content');
 let tempUnit = document.getElementById('temp-unit');
+let feeling = document.getElementById('feelings').value;
 
 // Create a new date instance dynamically with JS
 let d = new Date();
@@ -49,15 +50,15 @@ const getTemp = async (baseURL, newWeather, key) => {
 function performAction(e) {
   const newWeather = document.getElementById('zip').value;
 
-  getWeather('/fakeWeatherData')
+  getWeather('/projectData')
     .then(function (data) {
       console.log(data)
-      postData('/addWeather', { dataOut: newDate, tempOut: data.tempWithUnit, contentOut: document.getElementById('feelings').value })
+      postData('/addWeather', { dataOut: newDate, tempOut: data.tempWithUnit, contentOut: feeling[0] })
     });
 
-  getTemp(baseURL, newWeather, apiKey)
   updateUI();
 
+  getTemp(baseURL, newWeather, apiKey)
   // sendDataFun()
 };
 
@@ -106,7 +107,7 @@ const updateUI = async () => {
     console.log(allData);
     dataOut.innerHTML = newDate;
     tempOut.innerHTML = tempWithUnit;
-    contentOut.innerHTML = document.getElementById('feelings').value;
+    contentOut.innerHTML = feelings;
   }
   catch (error) {
     console.log('error', error)
