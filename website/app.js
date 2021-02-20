@@ -24,18 +24,18 @@ function performAction(e) {
   const newWeather = document.getElementById('zip').value;
   const feeling = document.getElementById('feelings').value;
 
-  getWeather('/fakeWeatherData')
+  getWeather(baseURL, newWeather, apiKey)
     .then(function (data) {
       console.log(data)
-      postData('/addWeather', { dataOut: newDate, tempOut: temperature, contentOut: feeling })
-      getTemp(baseURL, newWeather, apiKey);     // sendDataFun()
+      postData('/addWeather', { dataOut: newDate, tempOut: data.main.temp, contentOut: feeling })
+      // getTemp(baseURL, newWeather, apiKey);     // sendDataFun()
       updateUI();
     });
 };
 
 // Connect With API To Get Temp 
-const getTemp = async (baseURL, newWeather, key) => {
-  const res = await fetch(baseURL + newWeather + key)
+const getTemp = async (baseURL, newWeather, apiKey) => {
+  const res = await fetch(baseURL + newWeather + apiKey)
   try {
     const data = await res.json();
     let tempWithUnit = data.main.temp;
@@ -77,8 +77,8 @@ const postData = async (url = '', data = {}) => {
 
 
 // Async GET
-const getWeather = async (url = '') => {
-  const res = await fetch(url);
+const getWeather = async (baseUrl, newZip, apiKey) => {
+  const res = await fetch(baseUrl + newZip + apiKey);
   try {
     // Transform into JSON
     const data = await res.json();
