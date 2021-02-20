@@ -5,7 +5,7 @@ let dataOut = document.getElementById('date');
 let tempOut = document.getElementById('temp');
 let contentOut = document.getElementById('content');
 let tempUnit = document.getElementById('temp-unit');
-
+let temperature;
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
@@ -22,6 +22,19 @@ function round10(number, precision) {
   return roundedTempNumber / factor;
 };
 
+// Main Function
+function performAction(e) {
+  const newWeather = document.getElementById('zip').value;
+
+  getWeather('/fakeWeatherData')
+    .then(function (data) {
+      console.log(data)
+      postData('/addWeather', { dataOut: newDate, tempOut: temperature, contentOut: document.getElementById('feelings').value })
+      getTemp(baseURL, newWeather, apiKey);     // sendDataFun()
+      updateUI();
+    });
+};
+
 // Connect With API To Get Temp 
 const getTemp = async (baseURL, newWeather, key) => {
   const res = await fetch(baseURL + newWeather + key)
@@ -34,32 +47,15 @@ const getTemp = async (baseURL, newWeather, key) => {
     else {
       tempWithUnit = tempWithUnit;
     }
+    temperature = tempWithUnit;
     // console.log(data);
     // console.log(data.main.temp);
-    return data;
+    // return data;
   } catch (error) {
     // console.log("error", error);
     tempOut.innerHTML = `There is No Country With This Zipcode `
   }
 }
-
-
-
-// Main Function
-function performAction(e) {
-  const newWeather = document.getElementById('zip').value;
-
-  getWeather('/fakeWeatherData')
-    .then(function (data) {
-      console.log(data)
-      postData('/addWeather', { dataOut: newDate, tempOut: data.tempWithUnit, contentOut: document.getElementById('feelings').value })
-    });
-
-  getTemp(baseURL, newWeather, apiKey)
-  updateUI();
-
-  // sendDataFun()
-};
 
 // Async POST
 const postData = async (url = '', data = {}) => {
@@ -105,7 +101,7 @@ const updateUI = async () => {
     const allData = await request.json()
     console.log(allData);
     dataOut.innerHTML = newDate;
-    tempOut.innerHTML = tempWithUnit;
+    tempOut.innerHTML = temperature;
     contentOut.innerHTML = document.getElementById('feelings').value;
   }
   catch (error) {
