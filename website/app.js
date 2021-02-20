@@ -1,9 +1,6 @@
 /* Global Variables */
 let baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
 let apiKey = '&appid=c06e9e33171903257c4e27e67824afc5';
-let dataOut = document.getElementById('date');
-let tempOut = document.getElementById('temp');
-let contentOut = document.getElementById('content');
 let tempUnit = document.getElementById('temp-unit');
 let temperature;
 // Create a new date instance dynamically with JS
@@ -25,11 +22,12 @@ function round10(number, precision) {
 // Main Function
 function performAction(e) {
   const newWeather = document.getElementById('zip').value;
+  const feeling = document.getElementById('feelings').value;
 
   getWeather('/fakeWeatherData')
     .then(function (data) {
       console.log(data)
-      postData('/addWeather', { dataOut: newDate, tempOut: temperature, contentOut: document.getElementById('feelings').value })
+      postData('/addWeather', { dataOut: newDate, tempOut: temperature, contentOut: feeling })
       getTemp(baseURL, newWeather, apiKey);     // sendDataFun()
       updateUI();
     });
@@ -100,9 +98,9 @@ const updateUI = async () => {
   try {
     const allData = await request.json()
     console.log(allData);
-    dataOut.innerHTML = newDate;
-    tempOut.innerHTML = temperature;
-    contentOut.innerHTML = document.getElementById('feelings').value;
+    document.getElementById('date').innerHTML = allData[0].dataOut;
+    document.getElementById('temp').innerHTML = allData[0].tempOut;
+    document.getElementById('content').innerHTML = allData[0].contentOut;
   }
   catch (error) {
     console.log('error', error)
