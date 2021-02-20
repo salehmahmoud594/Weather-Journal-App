@@ -17,6 +17,8 @@ This will require modifying the `server.js` file and the `website/app.js` file. 
     - js
       - bootstrap.bundle.js
       - bootstrap.bundle.js.map
+  - img
+    - cover.jpg
   - index.html
   - style.css
   - app.js
