@@ -11,12 +11,12 @@ This will require modifying the `server.js` file and the `website/app.js` file. 
 ## The Project Structure:
   website
     - helper files
-      -- css
-        ---bootstrap.min.css
-        ---bootstrap.min.css.map
-      -- js
-        ---bootstrap.bundle.js
-        ---bootstrap.bundle.js.map
+      - css
+        - bootstrap.min.css
+        - bootstrap.min.css.map
+      - js
+        - bootstrap.bundle.js
+        - bootstrap.bundle.js.map
     - index.html
     - style.css
     - app.js
@@ -45,8 +45,8 @@ This will require modifying the `server.js` file and the `website/app.js` file. 
   - The textarea included in project HTML have an id of feelings.
   - The button included in project HTML have an id of generate.
   - The div with the id, entryHolder have three child divs with the ids:
-    -- date
-    -- temp
-    -- content
+    -  date
+    -  temp
+    -  content
   - In the file app.js, the element with the id of generate have an addEventListener() method called on it, with click as the first parameter, and a named callback function as the second parameter.
   - Included in the async function to retrieve that app’s data on the client side, existing DOM elements have their innerHTML properties dynamically set according to data returned by the app route.
