@@ -32,9 +32,9 @@ function listening() {
 
 // -----------------
 const fakeData = {
-  dateOut: 'Data',
-  tempOut: 'Temp',
-  contentOut: 'Feeling'
+  dateOut: '',
+  tempOut: '',
+  contentOut: ''
 }
 // -----------------
 app.get('/fakeWeatherData', getFakeData)
