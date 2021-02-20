@@ -9,24 +9,24 @@ This project requires you to create an asynchronous web app that uses Web API an
 This will require modifying the `server.js` file and the `website/app.js` file. You can see `index.html` for element references, and once you are finished with the project steps, you can use `style.css` to style your application to customized perfection.
 
 ## The Project Structure:
-  website
-    - helper files
-      - css
-        - bootstrap.min.css
-        - bootstrap.min.css.map
-      - js
-        - bootstrap.bundle.js
-        - bootstrap.bundle.js.map
-    - index.html
-    - style.css
-    - app.js
-  server.js
-  package.json
-  package-lock.json
-  README.md
-  commentsOnlyJS
-    - server.js
-    - app.js
+ Markup :  website
+            - helper files
+              - css
+                - bootstrap.min.css
+                - bootstrap.min.css.map
+              - js
+                - bootstrap.bundle.js
+                - bootstrap.bundle.js.map
+            - index.html
+            - style.css
+            - app.js
+          server.js
+          package.json
+          package-lock.json
+          README.md
+          commentsOnlyJS
+            - server.js
+            - app.js
 
 ## Weather-Journal App
   - Node and Express installed on the local machine.
