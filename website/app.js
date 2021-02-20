@@ -27,7 +27,7 @@ function performAction(e) {
   getWeather(baseURL, newWeather, apiKey)
     .then(function (data) {
       console.log(data)
-      postData('/addWeather', { dataOut: newDate, tempOut: data.main.temp, contentOut: feeling })
+      postData('/addWeather', { dataOut: newDate, tempOut: temperature, contentOut: feeling })
       // getTemp(baseURL, newWeather, apiKey);     // sendDataFun()
       updateUI();
     });
@@ -82,11 +82,20 @@ const getWeather = async (baseUrl, newZip, apiKey) => {
   try {
     // Transform into JSON
     const data = await res.json();
-    console.log(data);
-    return data;
+    let tempWithUnit = data.main.temp;
+    if (tempUnit.value == 2) {
+      tempWithUnit = round10(tempWithUnit - 273.15, 2);
+    }
+    else {
+      tempWithUnit = tempWithUnit;
+    }
+    temperature = tempWithUnit;
+    // console.log(data);
+    // return data;
   }
   catch (error) {
-    console.log("error", error);
+    // console.log("error", error);
+    tempOut.innerHTML = `There is No Country With This Zipcode `
     // appropriately handle the error
   }
 }
@@ -99,7 +108,7 @@ const updateUI = async () => {
     const allData = await request.json()
     console.log(allData);
     document.getElementById('date').innerHTML = allData[0].dataOut;
-    document.getElementById('temp').innerHTML = allData[0].tempOut;
+    document.getElementById('temp').innerHTML = temperature;
     document.getElementById('content').innerHTML = allData[0].contentOut;
   }
   catch (error) {

@@ -63,12 +63,3 @@ function addWeather(req, res) {
   res.send(weatherData);
   console.log(weatherData)
 }
-
-// POST an Weather
-// const data = [];
-// app.post('/Weather', addWeather);
-// function addWeather(req, res) {
-//   data.push(req.body);
-// };
-
-
