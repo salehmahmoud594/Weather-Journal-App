@@ -30,23 +30,12 @@ function listening() {
   console.log(`Running on localhost: ${port}`);
 };
 
-// -----------------
-const fakeData = {
-  dateOut: '',
-  tempOut: '',
-  contentOut: ''
-}
-// -----------------
-app.get('/fakeWeatherData', getFakeData)
-function getFakeData(req, res) {
-  res.send(fakeData)
-}
-// -----------------
-const weatherData = []
 // GET route
+const weatherData = []
 app.get('/all', getData);
 function getData(req, res) {
   res.send(weatherData);
+  console.log('GET request received');
   console.log(weatherData)
 };
 
@@ -61,5 +50,6 @@ function addWeather(req, res) {
   }
   weatherData.push(newEntry)
   res.send(weatherData);
+  console.log('POST request received');
   console.log(weatherData)
 }
