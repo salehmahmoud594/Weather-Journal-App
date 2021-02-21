@@ -3,10 +3,10 @@ let baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
 let apiKey = '&appid=c06e9e33171903257c4e27e67824afc5';
 let tempUnit = document.getElementById('temp-unit');
 let temperature;
-let feeling ;
+let feeling;
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
+let newDate = d.getMonth() + 1 + '.' + d.getDate() + '.' + d.getFullYear();
 
 // Call the API
 document.getElementById('generate').addEventListener('click', performAction);
